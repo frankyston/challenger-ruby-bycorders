@@ -1,19 +1,17 @@
-development:
+default: &default
   adapter: postgresql
-  database: challenger_bycoders_development
+  encoding: unicode
   username: postgres
   password: postgres
-  pool: 5
-  timeout: 5000
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: challengerbycoders_development
 
 test:
-  adapter: postgresql
-  database: challenger_bycoders_test
-  pool: 5
-  timeout: 5000
+  <<: *default
+  database: challengerbycoders_test
 
 production:
-  adapter: postgresql
-  database: challenger_bycoders_production
-  pool: 5
-  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] %>
