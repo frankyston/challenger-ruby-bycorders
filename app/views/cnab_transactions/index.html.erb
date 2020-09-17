@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12 blog-main">
+    <div class="blog-post">
+      <h2 class="blog-post-title">Transações CNAB!</h2>
+      <%= link_to "Importar CNAB", new_cnab_transaction_path, class: "btn btn-primary" %>
+      <br/><br/>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nome da Loja</th>
+            <th>Nome do Dono</th>
+            <th>Valor</th>
+            <th>Data da Transação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cnab_transactions.each do |cnab_transaction| %>
+            <tr>
+              <td><%= cnab_transaction.stone_name %></td>
+              <td><%= cnab_transaction.stone_owner %></td>
+              <td><%= number_to_currency cnab_transaction.value %></td>
+              <td><%= cnab_transaction.date_transaction %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
