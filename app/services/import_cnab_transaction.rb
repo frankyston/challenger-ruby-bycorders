@@ -44,7 +44,7 @@ class ImportCnabTransaction
   end
 
   def type_transaction(row)
-    case row[0..0]
+    case row[0..0].to_i
     when 1
       "debit"
     when 2
