@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_202015) do
+ActiveRecord::Schema.define(version: 2020_09_18_131503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,19 @@ ActiveRecord::Schema.define(version: 2020_09_16_202015) do
     t.string "cpf"
     t.string "card_number"
     t.time "hour_transaction"
-    t.string "stone_owner"
-    t.string "stone_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "store_id", null: false
+    t.index ["store_id"], name: "index_cnab_transactions_on_store_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.string "owner_name"
+    t.decimal "balance", precision: 8, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cnab_transactions", "stores"
 end

@@ -8,18 +8,18 @@
         <thead class="thead-dark">
           <tr>
             <th>Nome da Loja</th>
-            <th>Nome do Dono</th>
             <th>Valor</th>
             <th>Data da Transação</th>
+            <th>Hora da Transação</th>
           </tr>
         </thead>
         <tbody>
           <% @cnab_transactions.each do |cnab_transaction| %>
             <tr>
-              <td><%= cnab_transaction.stone_name %></td>
-              <td><%= cnab_transaction.stone_owner %></td>
+              <td><%= cnab_transaction.store.name %></td>
               <td><%= number_to_currency cnab_transaction.value %></td>
               <td><%= cnab_transaction.date_transaction %></td>
+              <td><%= cnab_transaction.hour_transaction %></td>
             </tr>
           <% end %>
         </tbody>

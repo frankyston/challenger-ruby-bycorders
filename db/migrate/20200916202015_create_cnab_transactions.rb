@@ -7,8 +7,6 @@ class CreateCnabTransactions < ActiveRecord::Migration[6.0]
       t.string :cpf
       t.string :card_number
       t.time :hour_transaction
-      t.string :stone_owner
-      t.string :stone_name
 
       t.timestamps
     end

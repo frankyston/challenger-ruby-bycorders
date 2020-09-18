@@ -15,7 +15,6 @@ class ImportCnabTransaction
     @capture_errors
   end
 
-  private
 
   def prepare_objects
     @file = File.open(@path.to_s)
@@ -28,8 +27,7 @@ class ImportCnabTransaction
         cpf: cpf(row),
         card_number: card_number(row),
         hour_transaction: hour_transaction(row),
-        stone_owner: stone_owner(row),
-        stone_name: stone_name(row)
+        store_id: store(row),
       }
     end
   end
@@ -90,11 +88,17 @@ class ImportCnabTransaction
     Time.at(row[42..47].to_i).strftime("%H:%M")
   end
 
-  def stone_owner(row)
+  def store_owner(row)
     row[48..61]
   end
 
-  def stone_name(row)
+  def store_name(row)
     row[62..80].strip
+  end
+
+  def store(row)
+    store = Store.find_by_name(store_name(row).to_s)
+    return store.id if store.present?
+    return Store.create!(name: store_name(row).to_s, owner_name: store_owner(row).to_s).id
   end
 end

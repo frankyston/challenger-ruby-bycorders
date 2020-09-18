@@ -7,7 +7,5 @@ RSpec.describe CnabTransaction, type: :model do
     it { should validate_presence_of(:cpf) }
     it { should validate_presence_of(:card_number) }
     it { should validate_presence_of(:hour_transaction) }
-    it { should validate_presence_of(:stone_owner) }
-    it { should validate_presence_of(:stone_name) }
   end
 end
